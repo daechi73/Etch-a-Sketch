@@ -33,3 +33,34 @@ inputRange.addEventListener("change", (e) => {
   setGrid(e.target.value);
   showRangeValue(e.target.value);
 });
+
+function setGrid(n) {
+  removeChildren();
+  for (i = 1; i <= n; i++) {
+    let divRow = document.createElement("div");
+    divRow.style.display = "flex";
+    divRow.style.flexBasis = "auto";
+    divRow.classList.add(`divWrapper`);
+    for (j = 1; j <= n; j++) {
+      let divColumn = document.createElement("div");
+      divColumn.classList.add(`div`);
+      divColumn.style.display = "flex";
+      divColumn.style.flexBasis = "auto";
+      divColumn.style.minHeight = "40px";
+      divColumn.style.minWidth = "40px";
+      // divColumn.style.flexBasis = "auto";
+      //divColumn.style.border = "Solid";
+      //divColumn.style.borderColor = "white";
+      //divColumn.style.borderWidth = "0.4px";
+      divRow.appendChild(divColumn);
+    }
+    divContainer.appendChild(divRow);
+  }
+  let divs = document.querySelectorAll(".div");
+
+  divs.forEach((e) =>
+    e.addEventListener("mouseover", () => {
+      e.style.backgroundColor = "white";
+    })
+  );
+}
