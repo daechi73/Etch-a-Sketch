@@ -12,29 +12,46 @@ divContainer.style.minWidth = "400px";
 document.body.appendChild(divContainer);
 document.body.style.backgroundColor = "black";
 document.body.style.display = "flex";
-
+document.body.style.justifyContent = "center";
+//divMenu and its contents
 let divMenu = document.createElement("div");
+let buttonWhiteWrapper = document.createElement("div");
+let buttonRGBWrapper = document.createElement("div");
 let inputRange = document.createElement("input");
 let rangeValue = document.createElement("div");
+let buttonWhite = document.createElement("button");
+let buttonRGB = document.createElement("button");
+buttonWhite.textContent = "Black & White";
+buttonRGB.textContent = "RGB";
+buttonRGB.id = "btnRGB";
+buttonWhite.id = "btnWhite";
 rangeValue.id = "rangeValue";
-rangeValue.style.color = "white";
-rangeValue.textContent = "value:";
+rangeValue.style.color = "black";
+rangeValue.textContent = "Value:";
+rangeValue.style.fontFamily = "Arial";
 inputRange.type = "range";
 inputRange.classList.add = "inputRange";
 inputRange.min = "1";
 inputRange.max = "60";
 inputRange.value = "16";
+divMenu.style.backgroundColor = "AntiqueWhite";
 
+buttonWhiteWrapper.appendChild(buttonWhite);
+buttonRGBWrapper.appendChild(buttonRGB);
 divMenu.appendChild(inputRange);
 divMenu.appendChild(rangeValue);
+divMenu.appendChild(buttonWhiteWrapper);
+divMenu.appendChild(buttonRGBWrapper);
 document.body.insertBefore(divMenu, divContainer);
 function showRangeValue(val) {
-  rangeValue.textContent = `${val} x ${val}`;
+  rangeValue.textContent = `Value: ${val} x ${val}`;
 }
 inputRange.addEventListener("change", (e) => {
   setGrid(e.target.value);
   showRangeValue(e.target.value);
 });
+buttonRGB.addEventListener("click", changeRGB);
+buttonWhite.addEventListener("click", changeWhite);
 
 function setGrid(n) {
   removeChildren();
@@ -58,6 +75,28 @@ function setGrid(n) {
     }
     divContainer.appendChild(divRow);
   }
+  changeWhite();
+}
+
+function removeChildren() {
+  while (divContainer.firstChild) {
+    divContainer.removeChild(divContainer.firstChild);
+  }
+}
+
+function changeRGB() {
+  let divs = document.querySelectorAll(".div");
+  //var randomColor = Math.floor(Math.random() * 16777215).toString(16);
+
+  divs.forEach((e) =>
+    e.addEventListener("mouseover", () => {
+      e.style.backgroundColor =
+        "#" + Math.floor(Math.random() * 16777215).toString(16);
+    })
+  );
+}
+
+function changeWhite() {
   let divs = document.querySelectorAll(".div");
 
   divs.forEach((e) =>
@@ -65,12 +104,6 @@ function setGrid(n) {
       e.style.backgroundColor = "white";
     })
   );
-}
-
-function removeChildren() {
-  while (divContainer.firstChild) {
-    divContainer.removeChild(divContainer.firstChild);
-  }
 }
 
 setGrid(16);
