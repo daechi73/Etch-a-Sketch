@@ -6,6 +6,8 @@ divContainer.style.borderColor = "white";
 divContainer.style.display = "flex";
 divContainer.style.flexDirection = "column";
 divContainer.style.flexBasis = "auto";
+divContainer.style.minHeight = "400px";
+divContainer.style.minWidth = "400px";
 
 document.body.appendChild(divContainer);
 document.body.style.backgroundColor = "black";
@@ -46,8 +48,8 @@ function setGrid(n) {
       divColumn.classList.add(`div`);
       divColumn.style.display = "flex";
       divColumn.style.flexBasis = "auto";
-      divColumn.style.minHeight = "40px";
-      divColumn.style.minWidth = "40px";
+      divColumn.style.minHeight = `${400 / n}px`;
+      divColumn.style.minWidth = `${400 / n}px`;
       // divColumn.style.flexBasis = "auto";
       //divColumn.style.border = "Solid";
       //divColumn.style.borderColor = "white";
