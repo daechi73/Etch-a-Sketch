@@ -1,4 +1,11 @@
 let divContainer = document.createElement("div");
+let container = document.createElement("div");
+
+container.style.backgroundImage = "url('sketch.jpg')";
+container.style.backgroundSzie = "contain";
+container.style.display = "flex";
+container.style.height = "800px";
+container.style.weight = "800px";
 divContainer.classList.add("divContainer");
 divContainer.id = "divContainer";
 divContainer.style.border = "solid";
@@ -9,7 +16,8 @@ divContainer.style.flexBasis = "auto";
 divContainer.style.minHeight = "400px";
 divContainer.style.minWidth = "400px";
 
-document.body.appendChild(divContainer);
+container.appendChild(divContainer);
+document.body.appendChild(container);
 document.body.style.backgroundColor = "black";
 document.body.style.display = "flex";
 document.body.style.justifyContent = "center";
@@ -17,14 +25,19 @@ document.body.style.justifyContent = "center";
 let divMenu = document.createElement("div");
 let buttonWhiteWrapper = document.createElement("div");
 let buttonRGBWrapper = document.createElement("div");
+let buttonResetWrapper = document.createElement("div");
 let inputRange = document.createElement("input");
 let rangeValue = document.createElement("div");
 let buttonWhite = document.createElement("button");
 let buttonRGB = document.createElement("button");
+let buttonReset = document.createElement("button");
+
+buttonReset.textContent = "Reset Board";
 buttonWhite.textContent = "Black & White";
 buttonRGB.textContent = "RGB";
 buttonRGB.id = "btnRGB";
 buttonWhite.id = "btnWhite";
+buttonReset.id = "btnReset";
 rangeValue.id = "rangeValue";
 rangeValue.style.color = "black";
 rangeValue.textContent = "Value:";
@@ -36,13 +49,16 @@ inputRange.max = "60";
 inputRange.value = "16";
 divMenu.style.backgroundColor = "AntiqueWhite";
 
+buttonResetWrapper.appendChild(buttonReset);
 buttonWhiteWrapper.appendChild(buttonWhite);
 buttonRGBWrapper.appendChild(buttonRGB);
 divMenu.appendChild(inputRange);
 divMenu.appendChild(rangeValue);
 divMenu.appendChild(buttonWhiteWrapper);
 divMenu.appendChild(buttonRGBWrapper);
-document.body.insertBefore(divMenu, divContainer);
+divMenu.appendChild(buttonResetWrapper);
+container.insertBefore(divMenu, divContainer);
+
 function showRangeValue(val) {
   rangeValue.textContent = `Value: ${val} x ${val}`;
 }
@@ -52,9 +68,12 @@ inputRange.addEventListener("change", (e) => {
 });
 buttonRGB.addEventListener("click", changeRGB);
 buttonWhite.addEventListener("click", changeWhite);
+buttonReset.addEventListener("click", () => {
+  setGrid(16);
+});
 
 function setGrid(n) {
-  removeChildren();
+  resetBoard();
   for (i = 1; i <= n; i++) {
     let divRow = document.createElement("div");
     divRow.style.display = "flex";
@@ -78,7 +97,7 @@ function setGrid(n) {
   changeWhite();
 }
 
-function removeChildren() {
+function resetBoard() {
   while (divContainer.firstChild) {
     divContainer.removeChild(divContainer.firstChild);
   }
@@ -86,7 +105,6 @@ function removeChildren() {
 
 function changeRGB() {
   let divs = document.querySelectorAll(".div");
-  //var randomColor = Math.floor(Math.random() * 16777215).toString(16);
 
   divs.forEach((e) =>
     e.addEventListener("mouseover", () => {
