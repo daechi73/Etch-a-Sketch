@@ -64,3 +64,11 @@ function setGrid(n) {
     })
   );
 }
+
+function removeChildren() {
+  while (divContainer.firstChild) {
+    divContainer.removeChild(divContainer.firstChild);
+  }
+}
+
+setGrid(16);
