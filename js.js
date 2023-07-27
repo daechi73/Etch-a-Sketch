@@ -21,7 +21,7 @@ divContainer.style.minHeight = "400px";
 divContainer.style.minWidth = "400px";
 divContainer.style.border = "solid";
 sketchContainer.classList.add("container-sketch");
-sketchContainer.style.backgroundColor = "black";
+sketchContainer.style.backgroundColor = "white";
 sketchContainer.appendChild(divContainer);
 container.appendChild(sketchContainer);
 document.body.appendChild(container);
@@ -79,7 +79,7 @@ inputRange.addEventListener("change", (e) => {
   showRangeValue(e.target.value);
 });
 buttonRGB.addEventListener("click", changeRGB);
-buttonWhite.addEventListener("click", changeWhite);
+buttonWhite.addEventListener("click", changeBlack);
 buttonReset.addEventListener("click", () => {
   setGrid(16);
 });
@@ -106,7 +106,7 @@ function setGrid(n) {
     }
     divContainer.appendChild(divRow);
   }
-  changeWhite();
+  changeBlack();
 }
 
 function resetBoard() {
@@ -126,12 +126,12 @@ function changeRGB() {
   );
 }
 
-function changeWhite() {
+function changeBlack() {
   let divs = document.querySelectorAll(".div");
 
   divs.forEach((e) =>
     e.addEventListener("mouseover", () => {
-      e.style.backgroundColor = "white";
+      e.style.backgroundColor = "black";
     })
   );
 }
