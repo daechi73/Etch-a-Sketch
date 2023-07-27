@@ -1,12 +1,16 @@
 let divContainer = document.createElement("div");
+const sketchContainer = document.createElement("div");
 let container = document.createElement("div");
 
-container.style.backgroundImage = "url('sketch.jpg')";
+//container.style.backgroundImage = "url('sketch.jpg')";
 container.style.backgroundSzie = "contain";
 container.style.display = "flex";
-container.style.height = "800px";
-container.style.weight = "800px";
-divContainer.classList.add("divContainer");
+container.style.justifyContent = "center";
+container.style.height = "100%";
+container.style.width = "100%";
+container.style.alignItems = "center  ";
+container.classList.add("container-main");
+divContainer.classList.add("container-cells");
 divContainer.id = "divContainer";
 divContainer.style.border = "solid";
 divContainer.style.borderColor = "white";
@@ -15,12 +19,17 @@ divContainer.style.flexDirection = "column";
 divContainer.style.flexBasis = "auto";
 divContainer.style.minHeight = "400px";
 divContainer.style.minWidth = "400px";
-
-container.appendChild(divContainer);
+divContainer.style.border = "solid";
+sketchContainer.classList.add("container-sketch");
+sketchContainer.style.backgroundColor = "black";
+sketchContainer.appendChild(divContainer);
+container.appendChild(sketchContainer);
 document.body.appendChild(container);
-document.body.style.backgroundColor = "black";
 document.body.style.display = "flex";
 document.body.style.justifyContent = "center";
+document.body.style.height = "100%";
+document.body.style.backgroundColor = "grey ";
+
 //divMenu and its contents
 let divMenu = document.createElement("div");
 let buttonWhiteWrapper = document.createElement("div");
@@ -48,6 +57,9 @@ inputRange.min = "1";
 inputRange.max = "60";
 inputRange.value = "16";
 divMenu.style.backgroundColor = "AntiqueWhite";
+divMenu.style.border = "solid";
+divMenu.style.height = "400px";
+divMenu.classList.add("container-menu");
 
 buttonResetWrapper.appendChild(buttonReset);
 buttonWhiteWrapper.appendChild(buttonWhite);
@@ -57,7 +69,7 @@ divMenu.appendChild(rangeValue);
 divMenu.appendChild(buttonWhiteWrapper);
 divMenu.appendChild(buttonRGBWrapper);
 divMenu.appendChild(buttonResetWrapper);
-container.insertBefore(divMenu, divContainer);
+container.insertBefore(divMenu, sketchContainer);
 
 function showRangeValue(val) {
   rangeValue.textContent = `Value: ${val} x ${val}`;
